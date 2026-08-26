@@ -1,0 +1,284 @@
+/* ===========================================================================
+   Vier Design-Varianten zum Vergleich. Umschaltbar ueber den Schalter im
+   Footer, die Wahl haelt via localStorage ueber beide Seiten.
+
+   Wenn eine Variante gewonnen hat: die Gewinner-Werte nach :root ziehen,
+   die uebrigen [data-theme]-Bloecke loeschen, Switcher und Script entfernen.
+
+     swiss      Schweizer Raster, Default. Harte Kanten, Linien statt Karten.
+     werkstatt  Arbeitsdokument. Monospace-Struktur, gedaempfte Tinte.
+     editorial  Fachessay. Serif, schmale Spalte, viel Luft.
+     dunkel     Durchgehend dunkel, technische Naehe.
+   ======================================================================== */
+
+/* --- 01 swiss (Default, greift auch ohne JavaScript) --------------------- */
+:root{
+  --bg:#ffffff;
+  --bg-alt:#f2f2f2;
+  --ink:#000000;
+  --ink-soft:#1c1c1c;
+  --muted:#666666;
+  --muted-2:#999999;
+  --paper:#ffffff;
+  --line:#000000;
+  --line-soft:#d4d4d4;
+  --accent:#e2231a;
+  --accent-deep:#b31c14;
+  --accent-soft:#fdeceb;
+
+  --band-bg:#000000;
+  --band-ink:#ffffff;
+  --band-muted:#9a9a9a;
+  --band-line:#333333;
+  --band-hl:#ff5c52;
+
+  --topbar-bg:rgba(255,255,255,.94);
+
+  --radius:0px;
+  --radius-btn:0px;
+  --border-w:1.5px;
+  --card-bg:transparent;
+  --card-border:var(--line);
+  --card-pad:26px 0 0;
+  --shadow:none;
+
+  --maxw:1120px;
+  --sec-pad:84px;
+  --body-lh:1.6;
+
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --display:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+
+  --h-font:var(--display);
+  --h-weight:700;
+  --h-tracking:-.035em;
+  --h-transform:uppercase;
+  --h-lh:1.02;
+
+  --eyebrow-font:var(--sans);
+  --eyebrow-mark:"\25AA";
+  --eyebrow-tracking:.14em;
+  --eyebrow-size:11.5px;
+
+  --lead-size:19px;
+  --em-style:normal;
+}
+
+/* --- 02 werkstatt ------------------------------------------------------- */
+[data-theme="werkstatt"]{
+  --bg:#f7f6f2;
+  --bg-alt:#efede7;
+  --ink:#232019;
+  --ink-soft:#3a352c;
+  --muted:#6f6a5e;
+  --muted-2:#a09a8d;
+  --paper:#fdfcfa;
+  --line:#cfcabe;
+  --line-soft:#e0dcd2;
+  --accent:#24457a;
+  --accent-deep:#1a3259;
+  --accent-soft:#e6ecf6;
+
+  --band-bg:#232019;
+  --band-ink:#f4f2ec;
+  --band-muted:#a9a294;
+  --band-line:#3d3830;
+  --band-hl:#8fb4e8;
+
+  --topbar-bg:rgba(247,246,242,.94);
+
+  --radius:0px;
+  --radius-btn:2px;
+  --border-w:1px;
+  --card-bg:transparent;
+  --card-border:var(--line);
+  --card-pad:22px 0 0;
+  --shadow:none;
+
+  --maxw:1000px;
+  --sec-pad:72px;
+  --body-lh:1.68;
+
+  --display:var(--sans);
+  --h-font:var(--sans);
+  --h-weight:600;
+  --h-tracking:-.015em;
+  --h-transform:none;
+  --h-lh:1.14;
+
+  --eyebrow-font:var(--mono);
+  --eyebrow-mark:"//";
+  --eyebrow-tracking:.04em;
+  --eyebrow-size:12px;
+
+  --lead-size:18px;
+  --em-style:normal;
+}
+
+/* --- 03 editorial ------------------------------------------------------- */
+[data-theme="editorial"]{
+  --bg:#fbfaf7;
+  --bg-alt:#f4f2ec;
+  --ink:#14120e;
+  --ink-soft:#332f27;
+  --muted:#6d675b;
+  --muted-2:#a29b8c;
+  --paper:#fffefb;
+  --line:#e2ded4;
+  --line-soft:#eceae2;
+  --accent:#7a2e1e;
+  --accent-deep:#5c2116;
+  --accent-soft:#f5e9e4;
+
+  --band-bg:#14120e;
+  --band-ink:#f6f3ec;
+  --band-muted:#a49c8d;
+  --band-line:#332f27;
+  --band-hl:#d9a08c;
+
+  --topbar-bg:rgba(251,250,247,.94);
+
+  --radius:0px;
+  --radius-btn:0px;
+  --border-w:1px;
+  --card-bg:transparent;
+  --card-border:var(--line);
+  --card-pad:24px 0 0;
+  --shadow:none;
+
+  --maxw:880px;
+  --sec-pad:96px;
+  --body-lh:1.78;
+
+  --display:"Fraunces","Iowan Old Style",Georgia,serif;
+  --h-font:var(--display);
+  --h-weight:600;
+  --h-tracking:-.012em;
+  --h-transform:none;
+  --h-lh:1.16;
+
+  --eyebrow-font:var(--display);
+  --eyebrow-mark:"\2014";
+  --eyebrow-tracking:.1em;
+  --eyebrow-size:12.5px;
+
+  --lead-size:20px;
+  --em-style:italic;
+}
+
+/* --- 04 dunkel ---------------------------------------------------------- */
+[data-theme="dunkel"]{
+  --bg:#0e0e11;
+  --bg-alt:#15151a;
+  --ink:#ecebf0;
+  --ink-soft:#c9c7d1;
+  --muted:#8b8794;
+  --muted-2:#615d6b;
+  --paper:#16161c;
+  --line:#2a2a33;
+  --line-soft:#22222a;
+  --accent:#ff7a45;
+  --accent-deep:#e8632f;
+  --accent-soft:#2a1a12;
+
+  --band-bg:#08080a;
+  --band-ink:#ecebf0;
+  --band-muted:#8b8794;
+  --band-line:#22222a;
+  --band-hl:#ff9b6e;
+
+  --topbar-bg:rgba(14,14,17,.92);
+
+  --radius:4px;
+  --radius-btn:4px;
+  --border-w:1px;
+  --card-bg:var(--paper);
+  --card-border:var(--line);
+  --card-pad:26px 28px;
+  --shadow:none;
+
+  --maxw:1080px;
+  --sec-pad:80px;
+  --body-lh:1.64;
+
+  --display:var(--sans);
+  --h-font:var(--sans);
+  --h-weight:650;
+  --h-tracking:-.025em;
+  --h-transform:none;
+  --h-lh:1.1;
+
+  --eyebrow-font:var(--mono);
+  --eyebrow-mark:"\25B8";
+  --eyebrow-tracking:.06em;
+  --eyebrow-size:12px;
+
+  --lead-size:18.5px;
+  --em-style:normal;
+}
+
+/* ===========================================================================
+   Variantenspezifische Struktur. Was sich nicht als Token ausdruecken laesst.
+   ======================================================================== */
+
+/* swiss: Sektionen durchnummeriert, Karten sind Spalten unter einer Linie */
+:root body{counter-reset:sec}
+[data-theme="swiss"] section{counter-increment:sec}
+[data-theme="swiss"] section .eyebrow::before{content:counter(sec,decimal-leading-zero) " /"}
+[data-theme="swiss"] .card,
+[data-theme="swiss"] .step,
+[data-theme="swiss"] .quote,
+[data-theme="swiss"] .person{border:none;border-top:var(--border-w) solid var(--line)}
+[data-theme="swiss"] .tiers,
+[data-theme="swiss"] .ba{border-width:var(--border-w)}
+[data-theme="swiss"] .btn{letter-spacing:.06em;text-transform:uppercase;font-size:13px}
+[data-theme="swiss"] .hero h1{max-width:15ch}
+
+/* werkstatt: Nummern und Labels in Monospace, gestrichelte Trennungen */
+[data-theme="werkstatt"] .step .no,
+[data-theme="werkstatt"] .tier .num,
+[data-theme="werkstatt"] .ba-head,
+[data-theme="werkstatt"] .define .term,
+[data-theme="werkstatt"] .trust,
+[data-theme="werkstatt"] .who{font-family:var(--mono);font-size:12.5px}
+[data-theme="werkstatt"] .card,
+[data-theme="werkstatt"] .step,
+[data-theme="werkstatt"] .quote,
+[data-theme="werkstatt"] .person{border:none;border-top:1px dashed var(--line)}
+[data-theme="werkstatt"] .btn{font-family:var(--mono);font-size:13.5px}
+[data-theme="werkstatt"] .btn-accent::before{content:"> "}
+
+/* editorial: keine Boxen, roemisch nummerierte Abschnitte, schmale Spalte */
+[data-theme="editorial"] section{counter-increment:sec}
+[data-theme="editorial"] section .eyebrow::before{content:counter(sec,upper-roman) " \2014"}
+[data-theme="editorial"] .card,
+[data-theme="editorial"] .step,
+[data-theme="editorial"] .quote,
+[data-theme="editorial"] .person{border:none;border-top:1px solid var(--line)}
+[data-theme="editorial"] .cards,
+[data-theme="editorial"] .team{gap:0 44px}
+[data-theme="editorial"] .quote p{font-size:18px}
+[data-theme="editorial"] .sec-head p,
+[data-theme="editorial"] .hero .lead{max-width:56ch}
+
+/* dunkel: Karten bleiben Karten, Buttons bekommen Kontur */
+[data-theme="dunkel"] .btn-primary{background:var(--ink);color:#0e0e11}
+[data-theme="dunkel"] .btn-primary:hover{background:#ffffff}
+[data-theme="dunkel"] .person .photo{background:linear-gradient(135deg,#22222a,#15151a)}
+[data-theme="dunkel"] .tier.goal{background:var(--accent-soft)}
+
+/* ===========================================================================
+   Der Schalter. Faellt mit der Entscheidung ersatzlos weg.
+   ======================================================================== */
+.themeswitch{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
+.themeswitch .lbl{color:var(--band-muted);letter-spacing:.06em;text-transform:uppercase;font-size:10.5px}
+.themeswitch button{
+  font:inherit;font-size:11.5px;cursor:pointer;padding:5px 11px;
+  background:transparent;color:var(--band-muted);
+  border:1px solid var(--band-line);border-radius:3px;
+  transition:.15s;font-family:var(--mono);
+}
+.themeswitch button:hover{color:var(--band-ink);border-color:var(--band-muted)}
+.themeswitch button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+@media(max-width:600px){.themeswitch{width:100%;margin-top:6px}}

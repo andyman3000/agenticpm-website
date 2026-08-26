@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Agentic Product Management · AI-natives Produktmanagement für Produktteams</title>
+<meta name="description" content="Engineering wird mit KI schneller, euer Produktteam muss mithalten. Inhouse-Training am eigenen Backlog: 20% Theorie, 80% Praxis. Ab Montag arbeitet euer Team mit KI-Agenten.">
+<link rel="preload" href="assets/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/fraunces-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="theme.css">
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("apm-theme")||"swiss")}catch(e){document.documentElement.setAttribute("data-theme","swiss")}</script>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:var(--body-lh);font-size:16px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  h1,h2{font-family:var(--h-font);font-weight:var(--h-weight);letter-spacing:var(--h-tracking);line-height:var(--h-lh);text-transform:var(--h-transform)}
+  h3{font-weight:600;letter-spacing:-.01em}
+  .eyebrow{display:inline-flex;align-items:baseline;gap:9px;font-family:var(--eyebrow-font);font-size:var(--eyebrow-size);font-weight:600;color:var(--accent);letter-spacing:var(--eyebrow-tracking);text-transform:uppercase;margin-bottom:16px}
+  .eyebrow::before{content:var(--eyebrow-mark)}
+  .btn{display:inline-block;padding:14px 28px;border-radius:var(--radius-btn);font-weight:600;font-size:15px;transition:.18s;cursor:pointer;border:1px solid transparent;font-family:var(--sans)}
+  .btn-primary{background:var(--ink);color:var(--bg)}
+  .btn-primary:hover{opacity:.85}
+  .btn-accent{background:var(--accent);color:#fff}
+  .btn-accent:hover{background:var(--accent-deep)}
+  .link-arrow{font-weight:600;font-size:15px;color:var(--ink)}
+  .link-arrow:hover{color:var(--accent)}
+
+  /* topbar */
+  .topbar{position:sticky;top:0;z-index:50;background:var(--topbar-bg);backdrop-filter:blur(8px);border-bottom:1px solid var(--line-soft)}
+  .topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:9px;font-weight:600;font-size:15.5px;letter-spacing:-.01em}
+  .brand .dot{color:var(--accent);font-size:13px}
+  .topbar .btn{padding:9px 18px;font-size:14px}
+
+  /* hero */
+  .hero{padding:88px 0 72px}
+  .hero h1{font-size:clamp(36px,5.6vw,58px);max-width:17ch;margin-bottom:22px}
+  .hero h1 em{font-style:var(--em-style);color:var(--accent)}
+  .hero .lead{font-size:var(--lead-size);color:var(--ink-soft);max-width:62ch;margin-bottom:14px}
+  .hero .lead b{font-weight:600}
+  .hero-actions{display:flex;align-items:center;gap:26px;flex-wrap:wrap;margin-top:30px}
+  .hero .trust{margin-top:34px;font-size:13.5px;color:var(--muted)}
+
+  /* claim band */
+  .thesis{background:var(--band-bg);color:var(--band-ink);padding:64px 0}
+  .thesis .grid2{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+  .thesis .big{font-family:var(--h-font);font-weight:var(--h-weight);letter-spacing:var(--h-tracking);font-size:clamp(22px,2.8vw,28px);line-height:1.25;margin-bottom:12px}
+  .thesis .big .hl{color:var(--band-hl)}
+  .thesis p{color:var(--band-muted);font-size:15.5px;max-width:48ch}
+  .thesis .mid{margin-top:44px;padding-top:36px;border-top:1px solid var(--band-line);font-family:var(--h-font);font-weight:var(--h-weight);letter-spacing:var(--h-tracking);font-size:clamp(19px,2.4vw,24px);line-height:1.4;max-width:56ch}
+  .thesis .mid em{font-style:var(--em-style);color:var(--band-hl)}
+
+  /* sections */
+  section{padding:var(--sec-pad) 0}
+  section.alt{background:var(--bg-alt)}
+  .sec-head{max-width:680px;margin-bottom:44px}
+  .sec-head h2{font-size:clamp(28px,3.6vw,38px);margin-bottom:14px}
+  .sec-head p{color:var(--muted);font-size:16.5px}
+  .sec-head.center{margin-left:auto;margin-right:auto;text-align:center}
+
+  /* definition strip */
+  .define{border-left:3px solid var(--accent);background:var(--paper);border-radius:0 var(--radius) var(--radius) 0;padding:26px 30px;max-width:760px;margin-top:36px}
+  .define .term{font-weight:600;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .define p{font-size:17px;color:var(--ink-soft)}
+
+  /* outcomes */
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .card{background:var(--card-bg);border:var(--border-w) solid var(--card-border);border-radius:var(--radius);padding:var(--card-pad)}
+  .card h3{font-size:17.5px;margin-bottom:8px}
+  .card p{color:var(--muted);font-size:15px}
+
+  /* vorher/nachher */
+  .ba{border:var(--border-w) solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--paper)}
+  .ba-head{display:grid;grid-template-columns:1fr 1fr;background:var(--bg-alt);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  .ba-head span{padding:12px 24px}
+  .ba-head span:last-child{color:var(--accent)}
+  .ba-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line-soft)}
+  .ba-row .before,.ba-row .after{padding:16px 24px;font-size:15px}
+  .ba-row .before{color:var(--muted)}
+  .ba-row .after{font-weight:500;border-left:1px solid var(--line-soft)}
+  .measure{margin-top:22px;border-left:3px solid var(--accent);background:var(--paper);border-radius:0 var(--radius) var(--radius) 0;padding:20px 26px;font-size:15px;color:var(--ink-soft);max-width:760px}
+
+  /* curriculum */
+  .tiers{display:flex;flex-direction:column;gap:0;border:var(--border-w) solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--paper)}
+  .tier{display:flex;gap:24px;padding:22px 28px;border-bottom:1px solid var(--line-soft);align-items:baseline}
+  .tier:last-child{border-bottom:none}
+  .tier .num{font-family:var(--display);font-size:20px;color:var(--muted-2);min-width:26px}
+  .tier h3{font-size:16.5px;display:inline;margin-right:8px}
+  .tier p{display:inline;color:var(--muted);font-size:15px}
+  .tier.goal{background:var(--accent-soft)}
+  .tier.goal .num{color:var(--accent)}
+  .tier.goal .tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);border:1px solid var(--accent);border-radius:99px;padding:2px 10px;margin-left:10px;vertical-align:2px}
+  .fine{margin-top:22px;font-size:13.5px;color:var(--muted);max-width:74ch}
+
+  /* ablauf */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  .step{background:var(--card-bg);border:var(--border-w) solid var(--card-border);border-radius:var(--radius);padding:var(--card-pad)}
+  .step .no{font-family:var(--display);font-size:15px;color:var(--accent);margin-bottom:10px;font-weight:600}
+  .step h3{font-size:16px;margin-bottom:6px}
+  .step p{color:var(--muted);font-size:14px}
+
+  /* team */
+  .team{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .person{background:var(--card-bg);border:var(--border-w) solid var(--card-border);border-radius:var(--radius);padding:var(--card-pad);display:flex;gap:22px}
+  .person .photo{width:92px;height:92px;border-radius:var(--radius);flex-shrink:0;object-fit:cover;background:linear-gradient(135deg,var(--accent-soft),var(--bg-alt));display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:24px;color:var(--accent)}
+  .person h3{font-size:18px}
+  .person .role{font-size:13px;font-weight:600;color:var(--accent);margin-bottom:8px;letter-spacing:.02em}
+  .person p{color:var(--muted);font-size:14.5px;margin-bottom:12px}
+  .person .links{display:flex;gap:16px;font-size:13.5px;font-weight:600}
+  .person .links a{color:var(--ink);border-bottom:1px solid var(--line-soft)}
+  .person .links a:hover{color:var(--accent);border-color:var(--accent)}
+  .eco{margin-top:30px;font-size:13.5px;color:var(--muted);max-width:74ch}
+
+  /* quotes */
+  .quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .quote{background:var(--card-bg);border:var(--border-w) solid var(--card-border);border-radius:var(--radius);padding:var(--card-pad);display:flex;flex-direction:column;gap:16px}
+  .quote p{font-family:var(--display);font-size:16.5px;line-height:1.45;color:var(--ink-soft)}
+  .quote .who{font-size:13px;color:var(--muted);font-weight:600}
+
+  /* final cta */
+  .cta-final{background:var(--band-bg);color:var(--band-ink);text-align:center;padding:96px 0}
+  .cta-final h2{font-size:clamp(30px,4vw,42px);margin-bottom:16px}
+  .cta-final .sub{color:var(--band-muted);font-size:17px;max-width:54ch;margin:0 auto 20px}
+  .cta-final .terms{color:var(--band-ink);font-size:15px;max-width:54ch;margin:0 auto 32px;opacity:.9}
+  .cta-final .fallback{margin-top:26px;font-size:14px;color:var(--band-muted)}
+  .cta-final .fallback a{color:var(--band-ink);border-bottom:1px solid var(--band-line)}
+  .cta-final .fallback a:hover{color:var(--band-hl)}
+
+  footer{background:var(--band-bg);color:var(--band-muted);border-top:1px solid var(--band-line);padding:30px 0;font-size:13px}
+  footer .foot{display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap}
+  footer .logo{color:var(--band-ink);font-weight:600}
+  footer .logo .dot{color:var(--accent)}
+  footer a{border-bottom:1px solid var(--band-line)}
+  footer a:hover{color:var(--band-ink);border-color:var(--band-muted)}
+
+  @media(max-width:900px){
+    .thesis .grid2,.team{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr 1fr}
+    .quotes{grid-template-columns:1fr}
+  }
+  @media(max-width:600px){
+    section{padding:60px 0}
+    .hero{padding:64px 0 52px}
+    .cards,.steps{grid-template-columns:1fr}
+    .person{flex-direction:column}
+    .topbar .btn{display:none}
+    .ba-head{display:none}
+    .ba-row{grid-template-columns:1fr}
+    .ba-row .after{border-left:none;border-top:1px dashed var(--line-soft)}
+    .ba-row .before::before{content:"Vorher";display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-2);margin-bottom:4px}
+    .ba-row .after::before{content:"Nachher";display:block;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <div class="brand"><span class="dot">◆</span>Agentic Product Management</div>
+    <a href="#contact" class="btn btn-accent">Strategiegespräch buchen</a>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">AI-natives Produktmanagement · Inhouse-Training für Produktteams</span>
+    <h1>Engineering ist mit KI schneller geworden. <em>Euer Produktteam noch nicht.</em></h1>
+    <p class="lead">Wo Entwickler mit Agenten bauen, wird die nächste gute Anforderung zum Engpass. Discovery, Validierung und Spezifikation entscheiden jetzt über euer Tempo. Genau dort setzt dieses Training an: <b>zwei Tage Praxis am eigenen Backlog</b>, danach arbeitet jeder PM in eurem Team mit KI-Agenten weiter.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Kostenloses Strategiegespräch</a>
+      <a href="#ablauf" class="link-arrow">Wie das Training läuft ›</a>
+    </div>
+    <div class="trust">Andreas Stephan &amp; Jan Milz · vor Ort bei euch · 5&#8211;15 Teilnehmer · Festpreis für das Team</div>
+  </div>
+</header>
+
+<div class="thesis">
+  <div class="wrap">
+    <div class="grid2">
+      <div>
+        <div class="big"><span class="hl">PM ohne KI</span><br>wird zum Bottleneck.</div>
+        <p>Wenn Entwickler mit Agenten bauen und liefern, hält klassisches Anforderungs-Schreiben das Tempo nicht mehr.</p>
+      </div>
+      <div>
+        <div class="big"><span class="hl">KI ohne PM</span><br>führt in die Feature-Hölle.</div>
+        <p>Wer alles bauen kann, baut ohne Discovery nur schneller das Falsche. Tempo allein macht kein besseres Produkt.</p>
+      </div>
+    </div>
+    <div class="mid">Die Arbeit ist nicht verschwunden, sie ist nach vorn gewandert: ins Denken, Validieren, Entscheiden. <em>Dieses Training macht euer Team genau dort stark.</em></div>
+  </div>
+</div>
+
+<section id="warum">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Warum jetzt</span>
+      <h2>Kommt euch das bekannt vor?</h2>
+      <p>Die Engineering-Seite verändert sich gerade, bei den einen im Pilotteam, bei den anderen schon im ganzen Bereich. In jedem Fall wandert das Nadelöhr dorthin, wo entschieden wird, was gebaut wird.</p>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Der Epic geht halb leer in die Umsetzung</h3>
+        <p>Es gibt keine geteilte Vorstellung davon, was eine gute Anforderung ist. Wir wissen doch alle, was zu tun ist, heißt es. Vier Wochen später baut das Team nach, was beim ersten Mal keiner geprüft hat.</p>
+      </div>
+      <div class="card">
+        <h3>Copilot ist ausgerollt, verändert hat sich nichts</h3>
+        <p>Die Lizenzen laufen, ein paar Mails werden schneller geschrieben. Wie das Team entscheidet, validiert und priorisiert, ist unverändert. Werkzeug ohne Arbeitsweise bleibt Spielzeug.</p>
+      </div>
+      <div class="card">
+        <h3>Von oben kommt ein AI-Mandat, unten fehlt die Praxis</h3>
+        <p>Strategie und Budget sind da. Aber niemand kann dem Team zeigen, wie agentisches Produktarbeiten konkret aussieht, Montag um 9 Uhr, am eigenen Backlog.</p>
+      </div>
+      <div class="card">
+        <h3>Rollen verschwimmen, und keiner zieht die neuen Grenzen</h3>
+        <p>Wenn ein Agent die Spezifikation in zehn Minuten schreibt, ist offen, wer noch entscheidet, was gut genug ist. Diese Grenze zieht sich nicht von selbst, und solange sie fehlt, macht jeder weiter wie bisher.</p>
+      </div>
+    </div>
+    <div class="define">
+      <div class="term">Agentisches Produktmanagement heißt</div>
+      <p>KI-Agenten übernehmen Recherche, Synthese, Dokumentation und Tickets. Euer Team behält, was den Unterschied macht: Urteil, Strategie und das Gespräch mit euren Kunden. Und wer den Weg weitergeht, baut daraus ein <b>agentisches Operating System</b> für die ganze Produktorganisation, das Routinearbeit dauerhaft übernimmt.</p>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="outcomes">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Was sich für euer Team ändert</span>
+      <h2>Am Montag merkt ihr den Unterschied.</h2>
+      <p>Vorher probiert euer Team KI aus, nachher betreibt es einen Validierungs-Loop: Idee, Test Card, Prototyp, Learning Card, Build-or-not. Was bisher Wochen im Backlog lag, wird zur getesteten Entscheidungsgrundlage in Tagen.</p>
+    </div>
+    <div class="ba">
+      <div class="ba-head"><span>Vorher</span><span>Nachher</span></div>
+      <div class="ba-row">
+        <div class="before">Ideen warten wochenlang auf Priorisierung.</div>
+        <div class="after">Ideen werden in Tagen getestet oder begraben.</div>
+      </div>
+      <div class="ba-row">
+        <div class="before">Specs gehen ungeprüft in die Entwicklung.</div>
+        <div class="after">Prototyp und Learning kommen vor dem ersten Sprint.</div>
+      </div>
+      <div class="ba-row">
+        <div class="before">KI ist ein Chat-Fenster für Mails und Zusammenfassungen.</div>
+        <div class="after">Jeder PM hat ein eigenes Kontext-System, das mit jeder Nutzung besser wird.</div>
+      </div>
+      <div class="ba-row">
+        <div class="before">Der PM übersetzt zwischen allen und bremst dadurch.</div>
+        <div class="after">Der PM orchestriert Discovery und Entscheidung, Engineering bekommt Validiertes.</div>
+      </div>
+      <div class="ba-row">
+        <div class="before">"Wir müssten mal was mit AI machen."</div>
+        <div class="after">Ein Team, eine gemeinsame Praxis, ab Montag.</div>
+      </div>
+    </div>
+    <div class="measure">
+      <p><b>Und ihr könnt es messen:</b> Das Pre-Assessment vor dem Training ist eure Baseline. Vier Wochen danach schauen wir gemeinsam darauf, was sich im Alltag verändert hat. Kein Zufriedenheits-Fragebogen, sondern Verhaltensänderung.</p>
+    </div>
+  </div>
+</section>
+
+<section id="curriculum">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Das Curriculum</span>
+      <h2>Eine Lernreise mit klarem Zielbild.</h2>
+      <p>Fünf Stufen. Im Vorgespräch bestimmen wir, wo euer Team heute steht, und setzen genau dort an. Keine starre Reihenfolge, aber eine klare Richtung: vom Fundament bis zum Operating System.</p>
+    </div>
+    <div class="tiers">
+      <div class="tier">
+        <span class="num">1</span>
+        <div><h3>Foundations</h3><p>Mentales Modell für LLMs und Agenten, Prompt- und Context-Engineering, Markdown, sicherer Umgang.</p></div>
+      </div>
+      <div class="tier">
+        <span class="num">2</span>
+        <div><h3>PM-Workflows über den ganzen Lifecycle</h3><p>KI in jeder Phase: Marktanalyse, Interviews, Synthese, Opportunity Mapping, Rapid Prototyping, Spec und Übergabe.</p></div>
+      </div>
+      <div class="tier">
+        <span class="num">3</span>
+        <div><h3>Vision &amp; Adoption</h3><p>Wie sieht agentische PM-Arbeit in sechs Monaten aus? Team-Ziele und persönlicher Adoptionsplan.</p></div>
+      </div>
+      <div class="tier">
+        <span class="num">4</span>
+        <div><h3>Building Systems</h3><p>Wiederverwendbare Workflows, dauerhaftes Arbeitsgedächtnis, eigene Automatisierungen, Anbindung eurer Tool-Landschaft.</p></div>
+      </div>
+      <div class="tier goal">
+        <span class="num">5</span>
+        <div><h3>PM Operating System</h3><span class="tag">Zielbild</span><p>Ein Operating System für die ganze Produktorganisation, keine Sammlung von Einzellösungen: Agenten übernehmen die Routine, die Zeit gehört wieder Discovery, Strategie und Kunden.</p></div>
+      </div>
+    </div>
+    <p class="fine">Im Zentrum stehen die Konzepte agentischen Arbeitens, kein einzelnes Tool. Ihr arbeitet in eurer eigenen Umgebung, etwa Langdock, Claude, Claude Code oder Codex, auf Wunsch compliance-freundlich gewählt. Nebenbei deckt das Training die AI-Literacy-Anforderung aus Art. 4 der KI-Verordnung ab.</p>
+  </div>
+</section>
+
+<section class="alt" id="ablauf">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Wie eine Zusammenarbeit läuft</span>
+      <h2>In vier Schritten zur neuen Arbeitsweise.</h2>
+      <p>Was Führung dem Team zutraut und was das Team wirklich kann, unterscheidet sich regelmäßig. Deshalb schneiden wir Module, Tiefe und Umgebung vorab auf euch zu.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="no">01</div>
+        <h3>Strategiegespräch</h3>
+        <p>Kostenlos und unverbindlich: Wo steht euer Team, unter welchem Druck arbeitet ihr, was gilt bei Daten und Compliance?</p>
+      </div>
+      <div class="step">
+        <div class="no">02</div>
+        <h3>Standortbestimmung</h3>
+        <p>Ein Pre-Assessment zeigt, wo jeder Einzelne steht und wie weit die Spanne im Team reicht. Daraus schneiden wir Agenda, Tiefe und Arbeitsumgebung zu.</p>
+      </div>
+      <div class="step">
+        <div class="no">03</div>
+        <h3>Zwei Tage intensiv</h3>
+        <p>Praxis am echten Backlog, in eurer Domäne und eurer Sprache. Vor Ort, von uns beiden geleitet.</p>
+      </div>
+      <div class="step">
+        <div class="no">04</div>
+        <h3>Coaching danach</h3>
+        <p>Auf Wunsch begleiten wir den Aufbau eurer Agenten und Systeme, bis aus zwei Tagen eine Arbeitsweise geworden ist.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Eure Trainer</span>
+      <h2>Zwei Praktiker, die selbst im Raum stehen.</h2>
+      <p>Wir haben das Curriculum gebaut, wir geben jedes Training selbst.</p>
+    </div>
+    <div class="team">
+      <div class="person">
+        <!-- Farbvariante liegt als assets/andreas.jpg daneben, falls euch die lieber ist. -->
+        <img class="photo" src="assets/andreas-bw.jpg" alt="Porträt von Andreas Stephan" width="400" height="400" loading="lazy">
+        <div>
+          <h3>Andreas Stephan</h3>
+          <div class="role">Systeme &amp; technische Tiefe</div>
+          <p>Über 20 Jahre digitale Produkte in E-Commerce und Online-Medien, mit früher Station in der Softwareentwicklung. Lehrt AI-natives Produktmanagement mit Claude Code, unter anderem an der Digitale Leute School.</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/andreasstephan/" target="_blank" rel="noopener">LinkedIn ›</a>
+            <a href="https://andreasstephan.com/" target="_blank" rel="noopener">Website ›</a>
+          </div>
+        </div>
+      </div>
+      <div class="person">
+        <!-- TODO Jan: Portraet fehlt. Gleicher Zuschnitt wie andreas-bw.jpg, quadratisch, Schwarzweiss.
+             Solange nur ein echtes Foto da ist, wirkt die Sektion halbfertig. -->
+        <div class="photo">JM</div>
+        <div>
+          <h3>Jan Milz</h3>
+          <div class="role">Discovery &amp; PM-Coaching</div>
+          <p>Discovery-Spezialist und Produkt-Coach, seit über 20 Jahren in der Produktentwicklung, früher Product Owner bei XING. Coacht Produktmanager:innen bei Intersport und trainiert an der Digitale Leute School.</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/jan-milz-02ab8210/" target="_blank" rel="noopener">LinkedIn ›</a>
+            <!-- TODO Jan: Website-URL fehlt. Link bewusst entfernt statt tot stehen zu lassen. -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="eco">Für die Engineering-Seite desselben Umbaus gibt es Hackers &amp; Wizards. Agentic Product Management ist das eigenständige Gegenstück für die Produktseite.</p>
+  </div>
+</section>
+
+<section class="alt" id="stimmen">
+  <div class="wrap">
+    <div class="sec-head center">
+      <span class="eyebrow">Stimmen</span>
+      <h2>Aus durchgeführten Inhouse-Workshops.</h2>
+      <p>Anonymisiert, nur nach Rolle benannt.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote">
+        <p>"Ich hätte nie gedacht, dass am Ende dabei rauskommt, was ich heute habe, und ich bin richtig begeistert."</p>
+        <div class="who">Product Owner</div>
+      </div>
+      <div class="quote">
+        <p>"Das Problem ist nicht mehr, die Dinge zu bauen, sondern auf die Idee zu kommen, was zu bauen ist. Der Aufbau macht total Sinn."</p>
+        <div class="who">Product Owner</div>
+      </div>
+      <div class="quote">
+        <p>"Man hat am Ende etwas in der Hand, womit man wirklich Werbung machen kann."</p>
+        <div class="who">Product Owner · zum Live-Prototyping</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final" id="contact">
+  <div class="wrap">
+    <h2>Bringt euer Produktteam nach vorn.</h2>
+    <p class="sub">Erzählt uns im Strategiegespräch, wo euer Team steht und unter welchem Druck ihr arbeitet. Wir schneiden den richtigen Mix zu. Kostenlos und unverbindlich.</p>
+    <p class="terms">Festpreis für das Team, nicht pro Kopf. Vorbereitung und Zuschnitt sind Fixkosten, der fünfzehnte Teilnehmer kostet nichts extra. Die Zahl hängt am Zuschnitt, deshalb nennen wir sie im Gespräch.</p>
+    <a href="https://calendar.app.google/wePdEHGH2onS4sRN9" target="_blank" rel="noopener" class="btn btn-accent">Termin für ein Strategiegespräch buchen</a>
+    <!-- TODO: persönliche Gmail durch Marken-Adresse ersetzen, sobald Domain steht -->
+    <p class="fallback">Lieber direkt schreiben? <a href="mailto:milzjan@gmail.com">milzjan@gmail.com</a></p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <div class="logo"><span class="dot">◆</span> Agentic Product Management</div>
+    <div>Andreas Stephan · Jan Milz</div>
+    <div>© 2026 · Unabhängige Partnerschaft · <a href="impressum.html">Impressum</a></div>
+    <!-- TEMPORAER: Vergleichsschalter fuer die Designentscheidung.
+         Faellt raus, sobald Andreas und Jan sich festgelegt haben. -->
+    <div class="themeswitch" role="group" aria-label="Design-Variante wählen">
+      <span class="lbl">Design</span>
+      <button type="button" data-set="swiss">01 Raster</button>
+      <button type="button" data-set="werkstatt">02 Werkstatt</button>
+      <button type="button" data-set="editorial">03 Editorial</button>
+      <button type="button" data-set="dunkel">04 Dunkel</button>
+    </div>
+  </div>
+</footer>
+
+<!-- TEMPORAER: gehoert zum Vergleichsschalter oben. -->
+<script>
+(function(){
+  var KEY = "apm-theme", DEFAULT = "swiss";
+  var root = document.documentElement;
+
+  function apply(name){
+    root.setAttribute("data-theme", name);
+    try { localStorage.setItem(KEY, name); } catch(e) {}
+    var buttons = document.querySelectorAll(".themeswitch button");
+    for (var i = 0; i < buttons.length; i++){
+      buttons[i].setAttribute("aria-pressed", buttons[i].dataset.set === name ? "true" : "false");
+    }
+  }
+
+  var current;
+  try { current = localStorage.getItem(KEY); } catch(e) {}
+  apply(current || DEFAULT);
+
+  document.addEventListener("click", function(ev){
+    var btn = ev.target.closest(".themeswitch button");
+    if (btn) apply(btn.dataset.set);
+  });
+})();
+</script>
+
+</body>
+</html>
