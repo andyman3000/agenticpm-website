@@ -269,7 +269,8 @@
 [data-theme="dunkel"] .tier.goal{background:var(--accent-soft)}
 
 /* ===========================================================================
-   Der Schalter. Faellt mit der Entscheidung ersatzlos weg.
+   TEMPORAER: Der Schalter. Faellt mit der Entscheidung ersatzlos weg.
+   Alle temporaeren Stellen finden: grep -rn TEMPORAER site/
    ======================================================================== */
 .themeswitch{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12px}
 .themeswitch .lbl{color:var(--band-muted);letter-spacing:.06em;text-transform:uppercase;font-size:10.5px}
